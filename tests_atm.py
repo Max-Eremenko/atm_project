@@ -8,10 +8,28 @@ class TestATM(unittest.TestCase):
         self.balance = 10000
         self.attempts = 2
         self.pin = 777
-        self.rise_money = atm_balance
+        self.rise_money = 1
+
+    def test_rise_money(self):
+        self.assertTrue(self.set.rise_money(rise_money=1), True)
 
     def test_pin(self):
         self.assertTrue(self.set.enter_pin(777), self.pin)
+
+    def test_pin2(self):
+        with self.assertRaises(IncorrectPin, msg="Incorrect Pin!!!"):
+            self.set.enter_pin(0)
+
+
+
+
+
+
+
+
+
+
+
 
     
 
