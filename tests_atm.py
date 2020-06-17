@@ -22,24 +22,31 @@ class TestATM(unittest.TestCase):
         self.assertNotEqual(self.set.enter_pin(self.pin), 555)
         self.assertRaises(IncorrectPin)
 
-    def test_attempts(self):
-        self.assertNotEqual(self.set.enter_pin(self.pin), 444)
-        self.attempts = self.attempts - 1
-        self.assertRaises(IncorrectPin)
-        self.assertNotEqual(self.set.enter_pin(self.pin), 333)
-        self.attempts = self.attempts - 0
-        self.assertRaises(AttemptsOver)
+    # def test_attempts(self):
+    #     self.assertNotEqual(self.set.enter_pin(self.pin), 444)
+    #     self.assertRaises(IncorrectPin, self.attempts - 1)
+        # self.assertNotEqual(self.set.enter_pin(777), self.attempts - 1)
+        # self.assertRaises(AttemptsOver)
 
     def test_withdraw_money(self):
         self.set.enter_pin(self.pin)
         self.assertNotEqual(self.set.get_money(10000), self.balance-5000)
         self.balance = 5000
 
+    def test_withdraw_money_all(self):
+        self.set.enter_pin(self.pin)
+        self.assertEqual(self.set.get_money(10000), self.balance-0)
+
+    def test_withdraw_money_million(self):
+        self.set.enter_pin(self.pin)
+        self.assertNotEqual(self.set.get_money(10000), self.balance-1000000)
+
     def test_correct_balance(self):
         self.assertEqual(self.balance, 10000)
 
     def test_incorrect_balance(self):
         self.assertNotEqual(self.balance, 50000)
+
 
     # def test_attempts_condition(self):
     #     self.assertRaises(AttemptsOver, msg="Attempts are over!!!")
