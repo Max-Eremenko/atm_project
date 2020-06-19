@@ -24,11 +24,11 @@ class TestATM(unittest.TestCase):
         self.assertNotEqual(self.set.get_money(money=0), 0)
         self.assertRaises(AtmBalance)
 
-    def test_correct_balance(self):
-        self.assertEqual(self.set.check_balance(), None)
-
     def test_incorrect_balance(self):
         self.assertNotEqual(self.set.check_balance(), 100000000)
+
+    # def test_correct_balance(self):
+    #     self.assertFalse(self.set.check_balance(), self.balance)
 
 
 
